@@ -13,6 +13,7 @@
     <script type="text/javascript">
     var kwalla;
     var kwallified = false;
+    var frame = 0;
 
     function kwallify() {
         if (!kwallified) {
@@ -20,19 +21,31 @@
 
             kwalla = window.open('./kwalla/index.html', '', "resizable=no, toolbar=no, scrollbars=no, menubar=no, status=no, directories=no, width=300, height=300, left=" + (screen.width / 2 - 150).toString() + ", top=" + (screen.height / 2 - 150).toString());
 
-            setTimeout(function() {
-                excite(10);
-            }, 5000);
+            excite(10);
         }
     }
 
     function excite(amount) {
-        while (1) {
-            kwalla.moveBy(amount, 0);
-            kwalla.moveBy(0, amount);
-            kwalla.moveBy(-amount, 0);
-            kwalla.moveBy(0, -amount);
-        }
+        setInterval(function() {
+            if (frame === 0)
+            {
+                kwalla.moveBy(amount, 0);
+                frame++;
+            } else if (frame === 1)
+            {
+                kwalla.moveBy(0, amount);
+                frame++;
+            } else if (frame === 2)
+            {
+                kwalla.moveBy(-amount, 0);
+                frame++;
+            } else if (frame === 3)
+            {
+                kwalla.moveBy(0, -amount);
+                frame = 0;
+            }
+            
+        }, 10);
     }
     </script>
 </body>
