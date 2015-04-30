@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <title>KWALLIFY</title>
+    <style type="text/css">
+    body {
+        background-image: url("kwalla/kwalla.png");
+    }
+    </style>
+</head>
+
+<body onclick="kwallify()">
+    <script type="text/javascript">
+    var kwalla;
+    var kwallified = false;
+
+    function kwallify() {
+        if (!kwallified) {
+            kwallified = true;
+
+            kwalla = window.open('./kwalla/index.html', '', "resizable=no, toolbar=no, scrollbars=no, menubar=no, status=no, directories=no, width=300, height=300, left=" + (screen.width / 2 - 150).toString() + ", top=" + (screen.height / 2 - 150).toString());
+
+            setTimeout(function() {
+                excite(15);
+            }), 500);
+    }
+    }
+
+    function excite(amount) {
+        while (1) {
+            kwalla.moveBy(amount, 0);
+            kwalla.moveBy(0, amount);
+            kwalla.moveBy(-amount, 0);
+            kwalla.moveBy(0, -amount);
+        }
+    }
+    </script>
+</body>
+
+</html>
